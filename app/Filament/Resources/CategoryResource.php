@@ -3,15 +3,16 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Tables;
+use Filament\Forms\Set;
 use App\Models\Category;
 use Filament\Forms\Form;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ToggleColumn;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -30,7 +31,11 @@ class CategoryResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->unique()
-                    ->autofocus(),
+                    ->lazy()
+                    ->autofocus()
+                    ->afterStateUpdated(function (Set $set, ?string $state) {
+                        $set('slug', str()->slug($state));
+                    }),
                 TextInput::make('slug')
                     ->required(),
                 Toggle::make('is_active')
