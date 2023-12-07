@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\TicketResource\Pages;
 
-use App\Filament\Resources\TicketResource;
 use Filament\Actions;
+use App\Filament\Resources\TicketResource;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateTicket extends CreateRecord
