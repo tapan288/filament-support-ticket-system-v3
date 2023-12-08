@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\TicketResource\RelationManagers\CategoriesRelationManager;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Ticket;
@@ -82,7 +83,7 @@ class TicketResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CategoriesRelationManager::class,
         ];
     }
 
