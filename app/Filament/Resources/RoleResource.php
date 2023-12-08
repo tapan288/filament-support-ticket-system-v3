@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\RoleResource\RelationManagers\PermissionsRelationManager;
 use Filament\Forms;
 use App\Models\Role;
 use Filament\Forms\Components\TextInput;
@@ -56,7 +57,7 @@ class RoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PermissionsRelationManager::class,
         ];
     }
 
