@@ -3,6 +3,8 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
+use App\Models\Role;
+use App\Models\User;
 use Filament\Tables;
 use App\Models\Ticket;
 use Filament\Forms\Form;
@@ -44,7 +46,11 @@ class TicketResource extends Resource
                     ->required()
                     ->in(self::$model::PRIORITY),
                 Select::make('assigned_to')
-                    ->relationship('assignedTo', 'name')
+                    ->options(
+                        User::whereHas('roles', function (Builder $query) {
+                            $query->where('name', Role::ROLES['Agent']);
+                        })->pluck('name', 'id')->toArray(),
+                    )
                     ->required(),
                 Textarea::make('comment')
                     ->rows(3),
