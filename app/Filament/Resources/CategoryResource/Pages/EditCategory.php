@@ -16,4 +16,9 @@ class EditCategory extends EditRecord
             //
         ];
     }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return "Category updated successfully";
+    }
 }

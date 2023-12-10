@@ -30,7 +30,7 @@ class CategoryResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->lazy()
                     ->autofocus()
                     ->afterStateUpdated(function (Set $set, ?string $state) {
