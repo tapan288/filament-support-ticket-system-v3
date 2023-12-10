@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Tables;
 use App\Models\Ticket;
 use Filament\Forms\Form;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -76,7 +77,12 @@ class TicketResource extends Resource
                 TextInputColumn::make('comment'),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')
+                    ->options(self::$model::STATUS)
+                    ->placeholder('Filter By Status'),
+                SelectFilter::make('priority')
+                    ->options(self::$model::PRIORITY)
+                    ->placeholder('Filter By Priority'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
