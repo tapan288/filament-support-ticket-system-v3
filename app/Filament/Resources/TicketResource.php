@@ -68,8 +68,20 @@ class TicketResource extends Resource
                     ->description(fn(Ticket $record): ?string => $record?->description ?? null)
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('status')->badge(),
-                TextColumn::make('priority')->badge(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->colors([
+                        'warning' => self::$model::STATUS['Archived'],
+                        'success' => self::$model::STATUS['Closed'],
+                        'danger' => self::$model::STATUS['Open'],
+                    ]),
+                TextColumn::make('priority')
+                    ->badge()
+                    ->colors([
+                        'warning' => self::$model::PRIORITY['Medium'],
+                        'success' => self::$model::PRIORITY['Low'],
+                        'danger' => self::$model::PRIORITY['High'],
+                    ]),
                 TextColumn::make('assignedTo.name')
                     ->searchable()
                     ->sortable(),
