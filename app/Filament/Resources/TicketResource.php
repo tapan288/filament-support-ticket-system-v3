@@ -2,24 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
 use App\Models\Role;
 use App\Models\User;
 use Filament\Tables;
 use App\Models\Ticket;
 use Filament\Forms\Form;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\TextInputColumn;
 use App\Filament\Resources\TicketResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Filament\Resources\TicketResource\RelationManagers\CategoriesRelationManager;
 
 class TicketResource extends Resource
@@ -61,10 +58,14 @@ class TicketResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn(Builder $query) =>
+                auth()->user()->hasRole(Role::ROLES['Admin']) ?
+                $query : $query->where('assigned_to', auth()->id())
+            )
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('title')
-                    ->description(fn(Ticket $record): string => $record->description)
+                    ->description(fn(Ticket $record): ?string => $record?->description ?? null)
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('status')->badge(),
