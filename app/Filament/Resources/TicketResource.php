@@ -7,6 +7,7 @@ use App\Models\User;
 use Filament\Tables;
 use App\Models\Ticket;
 use Filament\Forms\Form;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -68,13 +69,8 @@ class TicketResource extends Resource
                     ->description(fn(Ticket $record): ?string => $record?->description ?? null)
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('status')
-                    ->badge()
-                    ->colors([
-                        'warning' => self::$model::STATUS['Archived'],
-                        'success' => self::$model::STATUS['Closed'],
-                        'danger' => self::$model::STATUS['Open'],
-                    ]),
+                SelectColumn::make('status')
+                    ->options(self::$model::STATUS),
                 TextColumn::make('priority')
                     ->badge()
                     ->colors([
