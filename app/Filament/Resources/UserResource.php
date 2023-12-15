@@ -6,6 +6,7 @@ use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
 use Filament\Forms\Form;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
@@ -45,9 +46,13 @@ class UserResource extends Resource
                     ->sortable(),
                 TextColumn::make('email')
                     ->searchable(),
+                TextColumn::make('roles.name')
+                    ->badge(),
             ])
             ->filters([
-                //
+                SelectFilter::make('role')
+                    ->relationship('roles', 'name')
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
