@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -10,10 +9,7 @@ use App\Models\TextMessage;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\TextMessageResource\Pages;
-use App\Filament\Resources\TextMessageResource\RelationManagers;
 
 class TextMessageResource extends Resource
 {
@@ -81,8 +77,6 @@ class TextMessageResource extends Resource
     {
         return [
             'index' => Pages\ListTextMessages::route('/'),
-            // 'create' => Pages\CreateTextMessage::route('/create'),
-            // 'edit' => Pages\EditTextMessage::route('/{record}/edit'),
         ];
     }
 }
