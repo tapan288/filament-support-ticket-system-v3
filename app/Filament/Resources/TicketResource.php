@@ -13,6 +13,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,6 +54,7 @@ class TicketResource extends Resource
                     ->required(),
                 Textarea::make('comment')
                     ->rows(3),
+                FileUpload::make('attachment')
             ]);
     }
 

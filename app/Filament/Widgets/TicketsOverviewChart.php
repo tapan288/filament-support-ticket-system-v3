@@ -11,6 +11,8 @@ class TicketsOverviewChart extends ChartWidget
 {
     protected static ?string $heading = 'Tickets Overview';
 
+    protected static ?int $sort = 2;
+
     public ?string $filter = 'week';
 
     protected function getFilters(): ?array
@@ -47,12 +49,12 @@ class TicketsOverviewChart extends ChartWidget
         }
 
         $data = Trend::model(Ticket::class)
-            ->between(
-                start: $start,
-                end: $end,
-            )
+                    ->between(
+                        start: $start,
+                        end: $end,
+                    )
             ->$perData()
-            ->count();
+                ->count();
 
         return [
             'datasets' => [

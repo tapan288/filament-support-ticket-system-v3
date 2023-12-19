@@ -18,6 +18,7 @@ class Ticket extends Model
         'comment',
         'assigned_by',
         'assigned_to',
+        'attachment',
     ];
 
     const PRIORITY = [
