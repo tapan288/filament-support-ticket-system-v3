@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Ticket;
 use Filament\Notifications\Notification;
+use Filament\Notifications\Events\DatabaseNotificationsSent;
 
 class TicketObserver
 {
@@ -17,6 +18,8 @@ class TicketObserver
         Notification::make()
             ->title('A Ticket has been assigned to you')
             ->sendToDatabase($agent);
+
+        event(new DatabaseNotificationsSent($agent));
     }
 
     /**
