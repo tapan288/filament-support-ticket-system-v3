@@ -15,6 +15,8 @@ class MetricWidget extends Widget
 {
     protected static string $view = 'filament.custom-widgets.metric-widget';
 
+    public ?string $filter = null;
+
     // /**
     //  * @var array<string, mixed> | null
     //  */
@@ -56,6 +58,11 @@ class MetricWidget extends Widget
      * @var scalar | Htmlable | Closure
      */
     protected $value;
+
+    protected function getFilters(): ?array
+    {
+        return null;
+    }
 
     /**
      * @return array<string, mixed> | null
