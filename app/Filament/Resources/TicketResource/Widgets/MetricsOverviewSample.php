@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace App\Filament\Resources\TicketResource\Widgets;
 
-use App\Filament\CustomWidgets\AnotherMetricWidget;
-use App\Filament\CustomWidgets\MetricWidgetSample;
 use App\Filament\CustomWidgets\MetricsOverviewWidget;
+use App\Filament\Resources\TicketResource\Widgets\MetricWidgetSample;
 
 class MetricsOverviewSample extends MetricsOverviewWidget
 {
@@ -12,7 +11,6 @@ class MetricsOverviewSample extends MetricsOverviewWidget
     {
         return [
             MetricWidgetSample::class,
-            AnotherMetricWidget::class,
         ];
     }
 }
