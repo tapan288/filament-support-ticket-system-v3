@@ -13,7 +13,7 @@ use function Laravel\Prompts\text;
 use function Laravel\Prompts\select;
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
 
-class MakeMetricWidget extends Command
+class MakeMetricOverviewWidget extends Command
 {
     use CanManipulateFiles;
 
@@ -22,14 +22,14 @@ class MakeMetricWidget extends Command
      *
      * @var string
      */
-    protected $signature = 'make:metric-widget {name?} {--R|resource=} {--panel=} {--F|force}';
+    protected $signature = 'make:metric-overview-widget {name?} {--R|resource=} {--panel=} {--F|force}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new Filament Metric Widget class';
+    protected $description = 'Create a new Filament Metric Overview Widget class';
 
     /**
      * Execute the console command.
@@ -173,7 +173,7 @@ class MakeMetricWidget extends Command
             return static::INVALID;
         }
 
-        $this->copyStubToApp('MetricWidget', $path, [
+        $this->copyStubToApp('MetricOverviewWidget', $path, [
             'class' => $widgetClass,
             'namespace' => filled($resource) ? "{$resourceNamespace}\\{$resource}\\Widgets" . ($widgetNamespace !== '' ? "\\{$widgetNamespace}" : '') : $namespace . ($widgetNamespace !== '' ? "\\{$widgetNamespace}" : ''),
             'view' => $view,

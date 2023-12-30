@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Filament\CustomWidgets\MetricsOverviewWidget;
+
+class {{ class }} extends MetricsOverviewWidget
+{
+    protected function getMetrics(): array
+    {
+        return [
+            //
+        ];
+    }
+}
