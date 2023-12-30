@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Contracts\Support\Htmlable;
+use App\Filament\CustomWidgets\MetricWidget;
+
+class {{ class }} extends MetricWidget
+{
+    protected string|Htmlable $label = "";
+
+    public function getValue()
+    {
+        return "";
+    }
+}
