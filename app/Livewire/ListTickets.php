@@ -3,8 +3,6 @@
 namespace App\Livewire;
 
 use Filament\Tables;
-use App\Models\Role;
-use App\Models\User;
 use App\Models\Ticket;
 use Livewire\Component;
 use Filament\Tables\Table;
