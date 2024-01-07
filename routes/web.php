@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CreateTicket;
 use App\Livewire\ListTickets;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::get('/', function () {
 
 
 Route::get('tickets', ListTickets::class)->name('tickets.index');
+Route::get('tickets/create', CreateTicket::class)->name('tickets.create');
