@@ -1,15 +1,20 @@
 <?php
 
-use App\Livewire\EditTicket;
-use App\Livewire\ListTickets;
-use App\Livewire\CreateTicket;
+use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('login', Livewire\UserLogin::class)->name('login');
 
-Route::get('tickets', ListTickets::class)->name('tickets.index');
-Route::get('tickets/create', CreateTicket::class)->name('tickets.create');
-Route::get('tickets/{ticket}/edit', EditTicket::class)->name('tickets.edit');
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'tickets',
+    'as' => 'tickets.',
+], function () {
+    Route::get('/', Livewire\ListTickets::class)->name('index');
+    Route::get('create', Livewire\CreateTicket::class)->name('create');
+    Route::get('{ticket}/edit', Livewire\EditTicket::class)->name('edit');
+});
