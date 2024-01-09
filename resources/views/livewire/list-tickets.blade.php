@@ -3,5 +3,11 @@
         Tickets List
     </x-slot>
 
+    <x-slot name="headerEnd">
+        <x-filament::button href="{{ route('tickets.create') }}" tag="a">
+            Add Ticket
+        </x-filament::button>
+    </x-slot>
+
     {{ $this->table }}
 </x-filament::section>
